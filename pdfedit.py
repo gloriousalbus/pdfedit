@@ -10,7 +10,7 @@ image_file = 'out.jpg'
 images = convert_from_path(certificate_file, poppler_path = poppler_path)
 images[0].save(image_file, 'JPEG')
 
-#open the converted image anf the flag image using PIL module 
+#open the converted image and the flag image using PIL module 
 img = Image.open(image_file)
 flag = Image.open('flag.jpg')
 
