@@ -37,3 +37,7 @@ os.remove(image_file)
 
 #save result as pdf
 img.save('certificate_edited.pdf', 'PDF' ,resolution=100.0)
+
+#close the files
+img.close()
+flag.close()
