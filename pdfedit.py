@@ -1,6 +1,6 @@
 from pdf2image import convert_from_path, convert_from_bytes
 from PIL import Image
-import os
+import os, sys
 
 poppler_path = r"E:\user\Release-21.03.0\poppler-21.03.0\Library\bin"
 certificate_file = 'certificate.pdf'
@@ -10,9 +10,15 @@ image_file = 'out.jpg'
 images = convert_from_path(certificate_file, poppler_path = poppler_path)
 images[0].save(image_file, 'JPEG')
 
-#open the converted image and the flag image using PIL module 
+#open the converted image and the image using PIL module 
 img = Image.open(image_file)
-flag = Image.open('flag.jpg')
+
+if (len(sys.argv) > 1 and sys.argv[1] != ""):
+	custom_image_path = sys.argv[1]
+else:
+	custom_image_path = 'flag.jpg'
+	
+custom_image = Image.open(custom_image_path)
 
 #load the pixel map of the certificate
 pixels = img.load()
@@ -26,8 +32,8 @@ for i in range(0, 950):
 		if i not in range(837, 886) or j not in range(1606, 1656):
 			img.putpixel((i,j), colour)
 
-#insert flag
-img.paste(flag, (180, 1616))
+#insert custom_image
+img.paste(custom_image, (180, 1616))
 
 #display result
 img.show()
@@ -40,4 +46,4 @@ img.save('certificate_edited.pdf', 'PDF' ,resolution=100.0)
 
 #close the files
 img.close()
-flag.close()
+custom_image.close()
