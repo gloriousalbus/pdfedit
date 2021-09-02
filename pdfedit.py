@@ -2,7 +2,7 @@ from pdf2image import convert_from_path, convert_from_bytes
 from PIL import Image
 import os
 
-poppler_path = r"E:\user\Release-21.03.0\poppler-21.03.0\Library\bin"
+poppler_path = input("Enter the path of to the bin folder of poppler: ")
 certificate_file = 'certificate.pdf'
 image_file = 'out.jpg'
 
